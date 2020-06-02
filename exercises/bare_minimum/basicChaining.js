@@ -18,7 +18,9 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
   // TODO
   return firstLine.pluckFirstLineFromFileAsync(readFilePath)
     .then(gitHubProfile.getGitHubProfileAsync)
-    .then();
+    .then((profile) => {
+      return writeFileAsync(writeFilePath, JSON.stringify(profile));
+    });
 };
 
 // Export these functions so we can test them
